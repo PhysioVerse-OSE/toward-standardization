@@ -122,9 +122,6 @@ software/lung-fidelity-benchmark/  Software implementation area
 .github/ISSUE_TEMPLATE/       Issue templates for community input
 ```
 
-## License
-
-A license should be selected before accepting external code contributions. Recommended options for discussion include Apache-2.0 or BSD-3-Clause.
 
 ## Contact
 
