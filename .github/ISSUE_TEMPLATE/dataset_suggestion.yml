@@ -1,0 +1,29 @@
+name: Dataset suggestion
+description: Suggest a dataset for a benchmark database
+title: "Dataset suggestion: "
+labels: [dataset, community input]
+body:
+  - type: input
+    id: accession
+    attributes:
+      label: Dataset accession or link
+      description: GEO accession, repository link, or publication link
+    validations:
+      required: true
+  - type: textarea
+    id: relevance
+    attributes:
+      label: Why is this dataset relevant?
+      description: Explain the model system, tissue, condition, and benchmark value.
+    validations:
+      required: true
+  - type: input
+    id: data_type
+    attributes:
+      label: Data type
+      placeholder: RNA-seq raw counts, processed counts, metadata, etc.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Include sample type, controls, baseline status, species, or other context.

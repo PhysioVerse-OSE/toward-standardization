@@ -1,0 +1,17 @@
+name: Methodology feedback
+description: Comment on benchmarking methods or metrics
+title: "Methodology feedback: "
+labels: [methodology, feedback wanted]
+body:
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Feedback
+      description: What part of the benchmark method would you like to discuss?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: Optional suggestion for a metric, interpretation, figure, or workflow change.
