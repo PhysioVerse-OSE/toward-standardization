@@ -1,26 +1,54 @@
+<div align="center">
+
+<a href="https://physioverse.org/">
+  <img src="https://physioverse.org/branding/physioverse-logo.png" alt="PhysioVerse" width="620" />
+</a>
+
 # Toward Standardization
 
-**Reference-anchored benchmarking for in vitro biological models**
+### Reference-anchored benchmarking for advanced in vitro biological models
 
-Toward Standardization is a PhysioVerse open-source project focused on building transparent, reproducible workflows that help laboratories evaluate how closely an in vitro biological model reflects an appropriate declared biological reference standard.
+A PhysioVerse open-source project for transparent and reproducible evaluation of how closely an in vitro model reflects an appropriate biological reference.
 
-The first implementation is a **lung epithelial culture fidelity benchmark**. It compares healthy, mock, untreated, or baseline lung epithelial culture RNA-seq profiles against a fixed healthy human distal lung tissue reference using interpretable transcriptomic fidelity metrics.
+<a href="https://physioverse.org/tools"><strong>PhysioVerse Tools</strong></a>
+&nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="https://physioverse.org/"><strong>PhysioVerse.org</strong></a>
+&nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="https://github.com/PhysioVerse-OSE"><strong>PhysioVerse GitHub</strong></a>
 
-## Why this project matters
+</div>
 
-Organoids, body-on-chip platforms, organ tissue equivalents, tissue chips, and other microphysiological systems are increasingly used to model human biology. However, laboratories often need a transparent way to ask:
+---
 
-> How close is my model to the biological reference it is intended to represent?
+## Overview
 
-This project provides a reusable framework for answering that question using declared reference datasets, shared gene-space harmonization, benchmark metrics, robustness checks, and community review.
+Toward Standardization provides reproducible workflows for evaluating biological fidelity across advanced in vitro model systems.
 
-## First implementation: lung fidelity benchmark
+The first implementation is a **lung epithelial culture fidelity benchmark** that compares healthy, mock, untreated, or baseline lung epithelial culture RNA-seq profiles with a fixed healthy human distal lung tissue reference using interpretable transcriptomic metrics.
 
-The current example asks:
+The reference serves as an anchor for measuring and reporting biological proximity while preserving the identity of each model system.
+
+---
+
+## Why This Project Matters
+
+Organoids, body-on-chip systems, organ tissue equivalents, tissue chips, and other microphysiological systems are increasingly used to model human biology.
+
+A recurring question is:
+
+> How closely does an experimental model reflect the biological system it is intended to represent?
+
+Toward Standardization provides a transparent framework for addressing that question through declared reference datasets, shared gene-space harmonization, interpretable metrics, robustness analysis, and reproducible reporting.
+
+---
+
+## Lung Fidelity Benchmark
+
+The first benchmark asks:
 
 > Which two-dimensional or three-dimensional lung epithelial culture system is transcriptomically closest to healthy human distal lung tissue?
 
-The built-in benchmark uses public bulk RNA-seq datasets and includes:
+The built-in benchmark includes:
 
 - **GSE165192-Human** as the fixed healthy human distal lung tissue reference
 - NHBE 2D primary monolayer samples
@@ -31,39 +59,54 @@ The built-in benchmark uses public bulk RNA-seq datasets and includes:
 - ALI-HBEC differentiated epithelium
 - OTE engineered airway organ tissue equivalents
 
-The benchmark uses healthy, mock, untreated, or baseline samples only, which reduces confounding from infection, drug treatment, genetic perturbation, or disease-associated transcriptional responses.
+Healthy, mock, untreated, or baseline samples are used to reduce confounding from infection, drug treatment, genetic perturbation, or disease-associated transcriptional responses.
 
-## Core metrics
+---
 
-The first implementation uses two primary unsupervised metrics:
+## Core Metrics
 
-1. **PCA centroid distance**  
-   Measures global transcriptomic proximity between each model group and the fixed human distal lung reference centroid.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-2. **Spearman correlation**  
-   Measures sample-wise gene-expression rank similarity to the mean human distal lung reference profile.
+### PCA Centroid Distance
 
-It also includes robustness summaries across PCA preprocessing choices, including a **Dolan-Moré performance profile**.
+Measures global transcriptomic proximity between each model group and the fixed human distal lung reference centroid.
 
-## Core principle
+</td>
+<td width="50%" valign="top">
 
-The reference dataset is used as an anchor for scoring, not as a target that user data are forced to resemble. The workflow reports proximity to the reference while preserving the biological identity of each model.
+### Spearman Correlation
 
-## Current software modes
+Measures sample-wise gene-expression rank similarity to the mean human distal lung reference profile.
 
-- **Demo mode:** runs the full benchmark using the built-in lung reference database.
-- **Simple user mode:** lets a user add one expression CSV and compare one new model with the built-in database.
-- **Advanced user mode:** supports multiple user datasets or multiple culture-system groups with metadata.
+</td>
+</tr>
+</table>
 
-## Input data format
+The workflow also evaluates robustness across PCA preprocessing choices, including a **Dolan-Moré performance profile**.
 
-User-provided expression data should be CSV files. The first column must be named exactly:
+---
+
+## Software Modes
+
+| Mode | Purpose |
+|---|---|
+| **Demo** | Run the full benchmark using the built-in lung reference database. |
+| **Simple user** | Add one expression CSV and compare a new model with the built-in database. |
+| **Advanced user** | Analyze multiple user datasets or multiple culture-system groups with metadata. |
+
+---
+
+## Input Data
+
+User-provided expression data should be supplied as CSV files. The first column must be named exactly:
 
 ```text
 Gene Symbol
 ```
 
-Each remaining column should represent one RNA-seq sample. Rows represent genes. Values should be raw or count-like non-negative expression values.
+Each remaining column should represent one RNA-seq sample. Rows represent genes, and values should be raw or count-like non-negative expression values.
 
 Example:
 
@@ -74,55 +117,45 @@ EPCAM,500,490,510
 KRT8,850,870,860
 ```
 
-Recommended user data:
+Recommended inputs include human gene symbols, raw or count-like expression values, healthy/mock/untreated/baseline samples, biological replicates when available, and metadata describing culture system and technical batches.
 
-- human gene symbols
-- raw or count-like values
-- healthy, mock, untreated, or baseline samples
-- at least two to three biological replicates when possible
-- metadata describing the culture system and technical batches
+Already z-scored or batch-corrected values should not be used as benchmark input.
 
-Do not use already z-scored or already batch-corrected values for the benchmark input.
+For additional details, see [`docs/data-format.md`](docs/data-format.md).
 
-## What contributors can help with
+---
 
-We welcome contributions in several areas:
+## Documentation
 
-- Suggesting additional public benchmark datasets
-- Proposing reference standards for other tissue systems
-- Reviewing the lung benchmark methodology
-- Improving documentation and tutorials
-- Improving figure and report interpretation
-- Testing reproducibility across operating systems
-- Extending the framework to other biological systems
-- Improving validation checks and metadata templates
-- Contributing code for new benchmark modules
+| Resource | Description |
+|---|---|
+| [`docs/methodology.md`](docs/methodology.md) | Benchmark methodology and analysis approach |
+| [`docs/reference-standard-selection.md`](docs/reference-standard-selection.md) | Guidance for selecting biological reference standards |
+| [`docs/data-format.md`](docs/data-format.md) | Input structure and formatting guidance |
+| [`docs/interpretation-guide.md`](docs/interpretation-guide.md) | Guidance for interpreting benchmark outputs |
+| [`examples/lung-fidelity-demo/`](examples/lung-fidelity-demo/) | Lung fidelity demonstration resources |
+| [`software/lung-fidelity-benchmark/`](software/lung-fidelity-benchmark/) | Software implementation area |
 
-## Community questions
+---
 
-We invite discussion around these questions:
+## Contribute
 
-1. What should count as an appropriate reference standard for a specific model system?
-2. Which public datasets should be included or excluded from a benchmark database?
-3. What metadata are required to make benchmarking fair and interpretable?
-4. Which metrics best capture biological fidelity?
-5. How should results be reported so users understand both strengths and limitations?
-6. Which tissue or model system should be extended next?
+Contributions are welcome in areas such as additional public benchmark datasets, biological reference selection, methodology review, documentation, tutorials, reproducibility testing, metadata templates, validation checks, extensions to additional tissue systems, and new benchmark modules.
 
-## Project status
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution guidance.
 
-This repository is being launched as the first open PhysioVerse project for community input, method review, and collaborative development.
+---
 
-## Repository structure
+## PhysioVerse
 
-```text
-docs/                         Methodology and contribution documentation
-examples/lung-fidelity-demo/  Demo files and expected outputs
-software/lung-fidelity-benchmark/  Software implementation area
-.github/ISSUE_TEMPLATE/       Issue templates for community input
-```
+Toward Standardization is part of the broader PhysioVerse ecosystem.
 
-
-## Contact
-
-For questions about the PhysioVerse ecosystem, open a GitHub Discussion or contact the project maintainers through the PhysioVerse website.
+<p align="center">
+  <a href="https://physioverse.org/"><strong>Visit PhysioVerse</strong></a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="https://physioverse.org/tools"><strong>Explore Tools</strong></a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="https://physioverse.org/community"><strong>Community</strong></a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="https://physioverse.org/contact"><strong>Contact</strong></a>
+</p>
