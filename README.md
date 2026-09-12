@@ -159,3 +159,12 @@ Toward Standardization is part of the broader PhysioVerse ecosystem.
   &nbsp;&nbsp;•&nbsp;&nbsp;
   <a href="https://physioverse.org/contact"><strong>Contact</strong></a>
 </p>
+
+
+<!-- physioverse:task-update-v14:scientific-resource-contribution:start -->
+## Contribute to This Resource
+
+Share method feedback, report a reproducibility issue, or propose a focused documentation improvement. Include the relevant workflow, source, and expected or observed behavior.
+
+**[Open an Issue](https://github.com/PhysioVerse-OSE/toward-standardization/issues/new/choose)** | **[View open work](https://github.com/PhysioVerse-OSE/toward-standardization/issues)** | **[Propose a document change](https://github.com/PhysioVerse-OSE/PhysioVerse-OSE/blob/main/START_CONTRIBUTING.md#two-ways-to-contribute)**
+<!-- physioverse:task-update-v14:scientific-resource-contribution:end -->
